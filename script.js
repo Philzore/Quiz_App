@@ -56,8 +56,10 @@ function answer(selectedAnswer) {
 
     if (selectedAnswerNumber == question['right_answer']) {
         console.log('Richtig');
+        document.getElementById(selectedAnswer).parentNode.classList.add('bg-success') ; //.parentNode = Übergeordnete div
     } else {
         console.log('Falsch');
+        document.getElementById(selectedAnswer).parentNode.classList.add('bg-danger') ;
     }
 
 }
