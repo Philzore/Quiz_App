@@ -188,7 +188,7 @@ function answer(selectedAnswer) {
     let question = questions[currentQuestion];
     let selectedAnswerNumber = selectedAnswer.slice(-1); //Nur letzten char anzeigen lassen bzw. weg speicher in diesem Fall hier
 
-    let idOfRightAnswer = `answer_${question['right_answer']}`;
+    let idOfRightAnswer = `answer-${question['right_answer']}`;
 
     if (chooseRightOrWrong(selectedAnswerNumber, question)) {
         AUDIO_SUCESS.play();
@@ -215,15 +215,11 @@ function nextQuestion() {
 }
 
 function resetAnswersButtons() {
-    //TODO for schleife integrieren
-    document.getElementById('answer-1').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer-1').parentNode.classList.remove('bg-success');
-    document.getElementById('answer-2').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer-2').parentNode.classList.remove('bg-success');
-    document.getElementById('answer-3').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer-3').parentNode.classList.remove('bg-success');
-    document.getElementById('answer-4').parentNode.classList.remove('bg-danger');
-    document.getElementById('answer-4').parentNode.classList.remove('bg-success');
+    for (let i = 1; i < 5; i++) {
+        const answerNumber = i;
+        document.getElementById(`answer-${answerNumber}`).parentNode.classList.remove('bg-danger');
+        document.getElementById(`answer-${answerNumber}`).parentNode.classList.remove('bg-success');
+    }
 }
 
 function restartGame() {
