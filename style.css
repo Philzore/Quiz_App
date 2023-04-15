@@ -5,14 +5,15 @@ body {
 
 .container {
     min-height: 100vh;
-    background-color: #007AFF !important;
+    /*background-color: #007AFF !important; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .quiz-card {
-    width: 30rem;
+    width: 50rem;
+    height: 30rem !important;
 }
 
 .question-footer {
@@ -27,7 +28,8 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.bg-success, .bg-danger{
+.bg-success,
+.bg-danger {
     color: white !important;
 }
 
@@ -43,4 +45,35 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 24px;
+}
+
+.start-screen {
+    background-color: #f7f7f7;
+    background-image: url(./img/brainbg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.font-choose {
+    background-color: lightgray;
+    padding: 8px;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.card-body {
+    padding: 10px !important;
+}
+
+.bg-colour-dark {
+    background-color: #27355c !important;
+}
+
+.d-none  {
+    display: none;
 }

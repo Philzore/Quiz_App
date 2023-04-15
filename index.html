@@ -27,59 +27,88 @@
     </nav>
 
     <div class="container">
-        <div class="card quiz-card">
-            <img src="./img/logo.png" class="card-img-top" id="header-image" alt="...">
+        <div class="card quiz-card d-flex">
+            <div class="d-flex h-100">
 
-            <div class="progress" role="progressbar">
-                <div class="progress-bar" id="progress-bar" style="width: 0%">25%</div>
-            </div>
-
-            <div class="card-body" id="endScreen" style="display: none;">
-                <div class="text-center">
-                    <h2>Quiz beendet !</h2>
-                </div>
-
-                <div class="text-center">
-                    Du hast <b id="rightAnswers">XXX</b> Fragen von <b id="ammountQuestions">XXX</b> richtig beantwortet
-                </div>
-
-                <div class="button-row">
-                    <button class="btn btn-primary" onclick="restartGame()">Erneut spielen</button>
-                </div>
-
-            </div>
-
-            <div class="card-body" id="questionBody">
-                <h5 class="card-title" id="questiontext">Frage</h5>
-
-                <div class="card mb-2 quiz-answer-card" onclick="answer('answer_1')">
-                    <div class="card-body" id="answer_1">
-                        Antwort
+                <div class="bg-colour-dark d-flex flex-column justify-content-evenly p-4">
+                    <div>
+                        <img src="./img/logo.png" class="card-img-top" id="header-image" alt="...">
                     </div>
-                </div>
-                <div class="card mb-2 quiz-answer-card" onclick="answer('answer_2')">
-                    <div class="card-body" id="answer_2">
-                        Antwort
+                    <div class="btn-group-vertical mt-4" role="group" aria-label="Vertical button group">
+                        <button type="button" class="btn btn-primary bg-colour-dark" id="html-button"
+                            onclick="changeCategory('html')">HTML</button>
+                        <button type="button" class="btn btn-primary bg-colour-dark" id="css-button"
+                            onclick="changeCategory('css')">CSS</button>
+                        <button type="button" class="btn btn-primary bg-colour-dark" id="js-button"
+                            onclick="changeCategory('js')">JS</button>
+                        <button type="button" class="btn btn-primary bg-colour-dark" id="robotic-button"
+                            onclick="changeCategory('robotic')">Robotik</button>
                     </div>
-                </div>
-                <div class="card mb-2 quiz-answer-card" onclick="answer('answer_3')">
-                    <div class="card-body" id="answer_3">
-                        Antwort
-                    </div>
-                </div>
-                <div class="card mb-2 quiz-answer-card" onclick="answer('answer_4')">
-                    <div class="card-body" id="answer_4">
-                        Antwort
-                    </div>
+                    <button type="button" class="btn btn-primary bg-colour-dark" onclick="reset()">Reset</button>
                 </div>
 
-                <div class="question-footer">
-                    <span>
-                        <b id="current-question">1</b> von <b id="all-questions">5</b> Fragen
-                    </span>
-                    <button class="btn btn-primary" id="next-button" onclick="nextQuestion()" disabled>Nächste
-                        Frage</button>
+                <div class="w-100">
 
+                    <div class="card-body" id="end-Screen" style="display: none;">
+                        <div class="text-center">
+                            <h2>Quiz beendet !</h2>
+                        </div>
+
+                        <div class="text-center">
+                            Du hast <b id="right-Answers">XXX</b> Fragen von <b id="ammount-Questions">XXX</b> richtig
+                            beantwortet
+                        </div>
+
+                        <div class="button-row">
+                            <button class="btn btn-primary" onclick="restartGame()">Erneut spielen</button>
+                        </div>
+                    </div>
+
+                    <div class="card-body start-screen w-100 h-100 fs-4" id="start-screen">
+                        <span><b>Welcome to Phil´s Quiz</b></span>
+                        <p>Choose a category on the left and the quiz start</p>
+                    </div>
+
+                    <div class="card-body" id="question-Body" style="display: none;">
+                        <h5 class="card-title" id="questiontext">Frage</h5>
+
+                        <div class="card mb-2 quiz-answer-card" onclick="answer('answer_1')">
+                            <div class="card-body">
+                                <span class="font-choose"><b>A</b></span>
+                                <span id="answer-1">Antwort</span>
+                            </div>
+                        </div>
+                        <div class="card mb-2 quiz-answer-card" onclick="answer('answer_2')">
+                            <div class="card-body">
+                                <span class="font-choose"><b>B</b></span>
+                                <span id="answer-2">Antwort</span>
+                            </div>
+                        </div>
+                        <div class="card mb-2 quiz-answer-card" onclick="answer('answer_3')">
+                            <div class="card-body">
+                                <span class="font-choose"><b>C</b></span>
+                                <span id="answer-3">Antwort</span>
+                            </div>
+                        </div>
+                        <div class="card mb-2 quiz-answer-card" onclick="answer('answer_4')">
+                            <div class="card-body">
+                                <span class="font-choose"><b>D</b></span>
+                                <span id="answer-4">Antwort</span>
+                            </div>
+                        </div>
+
+                        <div class="progress mb-2" role="progressbar">
+                            <div class="progress-bar" id="progress-bar" style="width: 0%">25%</div>
+                        </div>
+
+                        <div class="question-footer">
+                            <span>
+                                <b id="current-question">1</b> von <b id="all-questions">5</b> Fragen
+                            </span>
+                            <button class="btn btn-primary" id="next-button" onclick="nextQuestion()" disabled>Nächste
+                                Frage</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
