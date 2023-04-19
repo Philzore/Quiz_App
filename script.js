@@ -1,4 +1,4 @@
-let questions = [{
+let questionsHtml = [{
     "question": "Wer hat HTML erfunden?",
     "answer_1": "Robbie Williams",
     "answer_2": "Lady Gaga",
@@ -7,7 +7,7 @@ let questions = [{
     "right_answer": 3
 },
 {
-    "question": "Was bedeutet das HTML Tag <a>?",
+    "question": "Was bedeutet das HTML Tag a?",
     "answer_1": "Link",
     "answer_2": "Fett",
     "answer_3": "Kursiv",
@@ -42,10 +42,10 @@ let questionsCSS = [{
 },
 {
     "question": "Was ist der richtige Weg eine externe CSS Datei einzubinden?",
-    "answer_1": "<stylesheet>mystyle.css</stylesheet>",
-    "answer_2": "<style src='mystyle.css'>",
-    "answer_3": "<link rel='stylesheet' href='mystyle.css'",
-    "answer_4": "<script src='myscript.js'></script>",
+    "answer_1": "stylesheet>mystyle.css</stylesheet",
+    "answer_2": "style src='mystyle.css'",
+    "answer_3": "link rel='stylesheet' href='mystyle.css'",
+    "answer_4": "script src='myscript.js'></script",
     "right_answer": 3
 },
 {
@@ -58,9 +58,9 @@ let questionsCSS = [{
 },
 {
     "question": "Welcher HTML Tag ist für ein internes Stylesheet?",
-    "answer_1": "<script>",
-    "answer_2": "<style>",
-    "answer_3": "<meta>",
+    "answer_1": "script",
+    "answer_2": "style",
+    "answer_3": "meta",
     "answer_4": "Geht nicht",
     "right_answer": 2
 },
@@ -68,18 +68,18 @@ let questionsCSS = [{
 
 let questionsJS = [{
     "question": "In welches HTML Element kommt JavaScript?",
-    "answer_1": "<js>",
-    "answer_2": "<scripting>",
-    "answer_3": "<javascript>",
-    "answer_4": "<script>",
+    "answer_1": "js",
+    "answer_2": "scripting",
+    "answer_3": "javascript",
+    "answer_4": "script",
     "right_answer": 4
 },
 {
     "question": "Was ist der korrekte Syntax um eine externe js Datei einzubinden?",
-    "answer_1": "<script link='xxx.js'>",
-    "answer_2": "<script href='xxx.js'>",
-    "answer_3": "<script src='xxx.js'>",
-    "answer_4": "<script name='xxx.js'>",
+    "answer_1": "script link='xxx.js'",
+    "answer_2": "script href='xxx.js'",
+    "answer_3": "script src='xxx.js'",
+    "answer_4": "script name='xxx.js'",
     "right_answer": 3
 },
 {
@@ -95,7 +95,7 @@ let questionsJS = [{
     "answer_1": "'Das ist ein Kommentar'",
     "answer_2": "//Das ist ein Kommentar",
     "answer_3": "<comment>Das ist ein Kommentar</comment>",
-    "answer_4": "<!--Das ist ein Kommentar-->",
+    "answer_4": "!--Das ist ein Kommentar--",
     "right_answer": 2
 },
 ]
@@ -130,18 +130,42 @@ let questionsRobotic = [
         "answer_1": "'Das ist ein Kommentar'",
         "answer_2": ";Das ist ein Kommentar",
         "answer_3": "//Das ist ein Kommentar",
-        "answer_4": "<!--Das ist ein Kommentar-->",
+        "answer_4": "!--Das ist ein Kommentar--",
         "right_answer": 2
     },
 ]
 
 let currentQuestion = 0;
 let countRightAnswers = 0;
+let questionCategory = '';
+let currentQuestionArray;
 let AUDIO_SUCESS = new Audio('audio/success.mp3');
 let AUDIO_FAIL = new Audio('audio/fail.mp3');
+let windowWidth  ;
+let throttled = false ;
+
+//window resize event listener
+window.addEventListener('resize' , function() {
+    if (!throttled) {
+        getDimensions();
+        throttled = true ;
+        this.setTimeout(function(){
+            throttled = false ;
+        },250);
+    }
+});
+
+function getDimensions(){
+    windowWidth = window.innerWidth ;
+    if (windowWidth <= 770){
+        document.getElementById('trophy-endscreen').classList.remove('ms-3') ;
+    } else {
+        document.getElementById('trophy-endscreen').classList.add('ms-3') ;
+    }
+}
 
 function init() {
-    document.getElementById('all-questions').innerHTML = questions.length;
+    document.getElementById('all-questions').innerHTML = currentQuestionArray.length;
     showQuestion();
 }
 
@@ -156,26 +180,26 @@ function showQuestion() {
 }
 
 function gameIsOver() {
-    return currentQuestion >= questions.length;
+    return currentQuestion >= currentQuestionArray.length;
 }
 
 function showEndScreen() {
     document.getElementById('end-Screen').style = '';
     document.getElementById('question-Body').style = 'display : none;';
     document.getElementById('right-Answers').innerHTML = countRightAnswers;
-    document.getElementById('ammount-Questions').innerHTML = questions.length;
-    document.getElementById('header-image').src = './img/trophy.png';
+    document.getElementById('ammount-Questions').innerHTML = currentQuestionArray.length;
+    // document.getElementById('header-image').src = './img/trophy.png';
 }
 
 function updateProgressBar() {
-    let percent = (currentQuestion + 1) / questions.length;
+    let percent = (currentQuestion + 1) / currentQuestionArray.length;
     percent = Math.round(percent * 100); //Ergebnis runden
-    document.getElementById('progress-bar').innerHTML = `${percent} %`;
+    document.getElementById('progress-bar').innerHTML = `Frage ${(currentQuestion + 1)} `;
     document.getElementById('progress-bar').style.width = `${percent}%`;
 }
 
 function updateQuestion() {
-    let question = questions[currentQuestion];
+    let question = currentQuestionArray[currentQuestion];
     document.getElementById('current-question').innerHTML = currentQuestion + 1;
     document.getElementById('questiontext').innerHTML = question['question'];
     document.getElementById('answer-1').innerHTML = question['answer_1'];
@@ -184,8 +208,28 @@ function updateQuestion() {
     document.getElementById('answer-4').innerHTML = question['answer_4'];
 }
 
+function checkCategory(category) {
+    switch (category) {
+        case 'Html':
+            currentQuestionArray = questionsHtml ;
+            break;
+        case 'CSS':
+            currentQuestionArray = questionsCSS ;
+            break;
+        case 'JS':
+            currentQuestionArray = questionsJS ;
+            break;
+        case 'Robotic':
+            currentQuestionArray = questionsRobotic ;
+            break;
+
+        default:
+            break;
+    }
+}
+
 function answer(selectedAnswer) {
-    let question = questions[currentQuestion];
+    let question = currentQuestionArray[currentQuestion];
     let selectedAnswerNumber = selectedAnswer.slice(-1); //Nur letzten char anzeigen lassen bzw. weg speicher in diesem Fall hier
 
     let idOfRightAnswer = `answer-${question['right_answer']}`;
@@ -199,7 +243,22 @@ function answer(selectedAnswer) {
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
+    disableAllAnswerButtons();
     document.getElementById('next-button').disabled = false;
+}
+
+function disableAllAnswerButtons() {
+    document.getElementById('btn-answer-1').classList.add('no-event');
+    document.getElementById('btn-answer-2').classList.add('no-event');
+    document.getElementById('btn-answer-3').classList.add('no-event');
+    document.getElementById('btn-answer-4').classList.add('no-event');
+}
+
+function resetAnswerFunction() {
+    document.getElementById('btn-answer-1').classList.remove('no-event');
+    document.getElementById('btn-answer-2').classList.remove('no-event');
+    document.getElementById('btn-answer-3').classList.remove('no-event');
+    document.getElementById('btn-answer-4').classList.remove('no-event');
 }
 
 function chooseRightOrWrong(selectedAnswerNumber, question) {
@@ -211,7 +270,7 @@ function nextQuestion() {
     document.getElementById('next-button').disabled = true;
     resetAnswersButtons();
     showQuestion();
-
+    resetAnswerFunction();
 }
 
 function resetAnswersButtons() {
@@ -223,30 +282,32 @@ function resetAnswersButtons() {
 }
 
 function restartGame() {
-    document.getElementById('header-image').src = './img/logo.png';
     currentQuestion = 0;
     countRightAnswers = 0;
-    document.getElementById('end-Screen').style = 'display : none;';
+    document.getElementById('end-Screen').style = 'display : none !important;';
     document.getElementById('question-Body').style = '';
     init();
 }
 
 function changeCategory(category) {
+    checkCategory(category);
     //remove start screen
     document.getElementById('start-screen').style = 'display : none ;';
     //show the right category
     document.getElementById('question-Body').style = '';
+    init();
     //disable other categorys
-    if (category == 'html') {
+    if (category == 'Html') {
         chooseHTML();
-    } else if (category == 'css') {
+    } else if (category == 'CSS') {
         chooseCSS();
-    } else if (category == 'js') {
+    } else if (category == 'JS') {
         chooseJS();
-    } else if (category == 'robotic') {
+    } else if (category == 'Robotic') {
         chooseRobotic();
     }
     //show question of the category
+
 }
 
 function chooseHTML() {
@@ -277,8 +338,18 @@ function chooseRobotic() {
 function reset() {
     document.getElementById('start-screen').style = '';
     document.getElementById('question-Body').style = 'display : none;';
+    document.getElementById('end-Screen').style = 'display : none !important;';
     document.getElementById('html-button').disabled = false;
     document.getElementById('css-button').disabled = false;
     document.getElementById('js-button').disabled = false;
     document.getElementById('robotic-button').disabled = false;
+    document.getElementById('progress-bar').innerHTML = `Frage1`;
+    document.getElementById('progress-bar').style.width = `25%`;
+    document.getElementById('next-button').disabled = true;
+    resetAnswersButtons () ;
+    resetAnswerFunction () ;
+    currentQuestion = 0;
+    countRightAnswers = 0;
+    questionCategory = '';
+    
 }

@@ -13,7 +13,9 @@ body {
 
 .quiz-card {
     width: 50rem;
-    height: 30rem !important;
+    height: 35rem !important;
+    border-width: 0 !important;
+    background-color: #f7f7f7;
 }
 
 .question-footer {
@@ -76,4 +78,51 @@ body {
 
 .d-none  {
     display: none;
+}
+
+.no-event{
+    pointer-events: none;
+}
+
+@media (max-width:768px){
+    .margin-0 {
+        margin: 0 !important;
+    }
+}
+
+@media (max-width:750px){
+    
+    .margin-l-0 {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 450px){
+
+
+    .margin-b-4 {
+        margin-bottom: 4px;
+    }
+
+    .padding-4{
+        padding: 4px;
+    }
+
+    .max-height{
+        max-height: 65px;
+    }
+
+    .responsive-answer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 4px !important;
+    }
+
+    .responsive-question-footer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
