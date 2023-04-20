@@ -13,8 +13,12 @@ body {
 
 .quiz-card {
     width: 50rem;
-    height: 35rem !important;
+    height: 40rem !important;
     border-width: 0 !important;
+    background-color: #f7f7f7;
+}
+
+.bg-colour-light{
     background-color: #f7f7f7;
 }
 
@@ -124,5 +128,21 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+}
+
+@media (max-width: 400px){
+    .d-none-responsive-400{
+        display: none !important;
+    }
+
+    .d-show-responsive-400{
+        display: block !important;
+    }
+}
+
+@media (max-width: 325px){
+    .d-none-responsive-325{
+        display: none !important;
     }
 }

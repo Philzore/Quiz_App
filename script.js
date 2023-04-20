@@ -1,140 +1,3 @@
-let questionsHtml = [{
-    "question": "Wer hat HTML erfunden?",
-    "answer_1": "Robbie Williams",
-    "answer_2": "Lady Gaga",
-    "answer_3": "Tim Berners-Lee",
-    "answer_4": "Justin Bieber",
-    "right_answer": 3
-},
-{
-    "question": "Was bedeutet das HTML Tag a?",
-    "answer_1": "Link",
-    "answer_2": "Fett",
-    "answer_3": "Kursiv",
-    "answer_4": "Container",
-    "right_answer": 1
-},
-{
-    "question": "Zu was sind div Container da?",
-    "answer_1": "Einfach nur so",
-    "answer_2": "Um Bilder einzufügen",
-    "answer_3": "Für Spiele",
-    "answer_4": "Um sie anzuordnen",
-    "right_answer": 4
-},
-{
-    "question": "Was heißt HTML?",
-    "answer_1": "Es gibt keine ausgeschriebenen Namen",
-    "answer_2": "Hypertext Markup Language",
-    "answer_3": "Hyper tranfer market language",
-    "answer_4": "High transfer market lithuania",
-    "right_answer": 2
-},
-];
-
-let questionsCSS = [{
-    "question": "Für was steht CSS?",
-    "answer_1": "Creative Style Sheet",
-    "answer_2": "Colorful Style Sheet",
-    "answer_3": "Computer Style Sheet",
-    "answer_4": "Cascading Style Sheet",
-    "right_answer": 4
-},
-{
-    "question": "Was ist der richtige Weg eine externe CSS Datei einzubinden?",
-    "answer_1": "stylesheet>mystyle.css</stylesheet",
-    "answer_2": "style src='mystyle.css'",
-    "answer_3": "link rel='stylesheet' href='mystyle.css'",
-    "answer_4": "script src='myscript.js'></script",
-    "right_answer": 3
-},
-{
-    "question": "Wo ist der korrekte Platz um ein externes Stylesheet einzubinden?",
-    "answer_1": "Head Bereich",
-    "answer_2": "Body Bereich",
-    "answer_3": "Ganz am Ende",
-    "answer_4": "Egal",
-    "right_answer": 1
-},
-{
-    "question": "Welcher HTML Tag ist für ein internes Stylesheet?",
-    "answer_1": "script",
-    "answer_2": "style",
-    "answer_3": "meta",
-    "answer_4": "Geht nicht",
-    "right_answer": 2
-},
-]
-
-let questionsJS = [{
-    "question": "In welches HTML Element kommt JavaScript?",
-    "answer_1": "js",
-    "answer_2": "scripting",
-    "answer_3": "javascript",
-    "answer_4": "script",
-    "right_answer": 4
-},
-{
-    "question": "Was ist der korrekte Syntax um eine externe js Datei einzubinden?",
-    "answer_1": "script link='xxx.js'",
-    "answer_2": "script href='xxx.js'",
-    "answer_3": "script src='xxx.js'",
-    "answer_4": "script name='xxx.js'",
-    "right_answer": 3
-},
-{
-    "question": "Welche IF Anweisung ist richtig?",
-    "answer_1": "if (i == 5){}",
-    "answer_2": "if i = 5 then",
-    "answer_3": "if i = 5",
-    "answer_4": "if i == 5 then",
-    "right_answer": 1
-},
-{
-    "question": "Wie kann man ein Kommentar in JavaScript hinzufügen?",
-    "answer_1": "'Das ist ein Kommentar'",
-    "answer_2": "//Das ist ein Kommentar",
-    "answer_3": "<comment>Das ist ein Kommentar</comment>",
-    "answer_4": "!--Das ist ein Kommentar--",
-    "right_answer": 2
-},
-]
-
-let questionsRobotic = [
-    {
-        "question": "Von wem wurde KUKA gegründet?",
-        "answer_1": "Kilian & Kerstin",
-        "answer_2": "Köhler & Karsten",
-        "answer_3": "Kahn & Keller",
-        "answer_4": "Jakob Knappich & Johann Josef Keller",
-        "right_answer": 4
-    },
-    {
-        "question": "Was bedeutet KSS",
-        "answer_1": "Kuka Standard System",
-        "answer_2": "Kuka Safety System",
-        "answer_3": "Kuka System Software",
-        "answer_4": "Kuka Service System",
-        "right_answer": 3
-    },
-    {
-        "question": "Welche IF Anweisung ist richtig in KRL?",
-        "answer_1": "if (i == 5){}",
-        "answer_2": "if i = 5 then",
-        "answer_3": "if i = 5",
-        "answer_4": "if (i == 5) then...Endif",
-        "right_answer": 4
-    },
-    {
-        "question": "Wie kann man ein Kommentar in KRL hinzufügen?",
-        "answer_1": "'Das ist ein Kommentar'",
-        "answer_2": ";Das ist ein Kommentar",
-        "answer_3": "//Das ist ein Kommentar",
-        "answer_4": "!--Das ist ein Kommentar--",
-        "right_answer": 2
-    },
-]
-
 let currentQuestion = 0;
 let countRightAnswers = 0;
 let questionCategory = '';
@@ -157,10 +20,44 @@ window.addEventListener('resize' , function() {
 
 function getDimensions(){
     windowWidth = window.innerWidth ;
+    width770();
+    width400();
+    width325();
+}
+
+function width770(){
     if (windowWidth <= 770){
         document.getElementById('trophy-endscreen').classList.remove('ms-3') ;
     } else {
         document.getElementById('trophy-endscreen').classList.add('ms-3') ;
+    }
+}
+
+function width400(){
+    if (windowWidth <=400){
+        document.getElementById('full-trophy').classList.remove('d-none') ;
+        document.getElementById('end-Screen').classList.remove('justify-content-end') ;
+        document.getElementById('end-Screen').classList.add('flex-column') ;
+        document.getElementById('end-Screen').classList.add('justify-content-center') ;
+        document.getElementById('question-body').classList.add('p-2') ;
+    } else {
+        document.getElementById('full-trophy').classList.add('d-none') ;
+        document.getElementById('end-Screen').classList.add('justify-content-end') ;
+        document.getElementById('end-Screen').classList.remove('flex-column') ;
+        document.getElementById('end-Screen').classList.remove('justify-content-center') ;
+        document.getElementById('question-body').classList.remove('p-2') ;
+    }
+}
+
+function width325(){
+    if (windowWidth <=325){
+        document.getElementById('next-arrow').classList.remove('d-none') ;
+        document.getElementById('question-body').classList.remove('d-flex') ;
+        document.getElementById('question-body').classList.remove('align-items-center') ;
+    } else {
+        document.getElementById('next-arrow').classList.add('d-none') ;
+        document.getElementById('question-body').classList.add('d-flex') ;
+        document.getElementById('question-body').classList.add('align-items-center') ;
     }
 }
 
@@ -188,7 +85,6 @@ function showEndScreen() {
     document.getElementById('question-Body').style = 'display : none;';
     document.getElementById('right-Answers').innerHTML = countRightAnswers;
     document.getElementById('ammount-Questions').innerHTML = currentQuestionArray.length;
-    // document.getElementById('header-image').src = './img/trophy.png';
 }
 
 function updateProgressBar() {
@@ -245,20 +141,21 @@ function answer(selectedAnswer) {
     }
     disableAllAnswerButtons();
     document.getElementById('next-button').disabled = false;
+    document.getElementById('next-arrow').disabled = false;
 }
 
 function disableAllAnswerButtons() {
-    document.getElementById('btn-answer-1').classList.add('no-event');
-    document.getElementById('btn-answer-2').classList.add('no-event');
-    document.getElementById('btn-answer-3').classList.add('no-event');
-    document.getElementById('btn-answer-4').classList.add('no-event');
+    for (let i = 1; i < 5; i++) {
+        const number = i;
+        document.getElementById(`btn-answer-${number}`).classList.add('no-event');
+    }
 }
 
 function resetAnswerFunction() {
-    document.getElementById('btn-answer-1').classList.remove('no-event');
-    document.getElementById('btn-answer-2').classList.remove('no-event');
-    document.getElementById('btn-answer-3').classList.remove('no-event');
-    document.getElementById('btn-answer-4').classList.remove('no-event');
+    for (let i = 1; i < 5; i++) {
+        const number = i;
+        document.getElementById(`btn-answer-${number}`).classList.remove('no-event');
+    }
 }
 
 function chooseRightOrWrong(selectedAnswerNumber, question) {
@@ -268,6 +165,7 @@ function chooseRightOrWrong(selectedAnswerNumber, question) {
 function nextQuestion() {
     currentQuestion++; //variable wird um eins erhöht
     document.getElementById('next-button').disabled = true;
+    document.getElementById('next-arrow').disabled = true;
     resetAnswersButtons();
     showQuestion();
     resetAnswerFunction();
@@ -298,42 +196,27 @@ function changeCategory(category) {
     init();
     //disable other categorys
     if (category == 'Html') {
-        chooseHTML();
+        deactivateCategory('css');
+        deactivateCategory('js');
+        deactivateCategory('robotic');
     } else if (category == 'CSS') {
-        chooseCSS();
+        deactivateCategory('html');
+        deactivateCategory('js');
+        deactivateCategory('robotic');
     } else if (category == 'JS') {
-        chooseJS();
+        deactivateCategory('css');
+        deactivateCategory('html');
+        deactivateCategory('robotic');
     } else if (category == 'Robotic') {
-        chooseRobotic();
+        deactivateCategory('css');
+        deactivateCategory('js');
+        deactivateCategory('html');
     }
-    //show question of the category
-
 }
 
-function chooseHTML() {
-    document.getElementById('css-button').disabled = true;
-    document.getElementById('js-button').disabled = true;
-    document.getElementById('robotic-button').disabled = true;
+function deactivateCategory(category){
+    document.getElementById(`${category}-button`).disabled = true;
 }
-
-function chooseCSS() {
-    document.getElementById('html-button').disabled = true;
-    document.getElementById('js-button').disabled = true;
-    document.getElementById('robotic-button').disabled = true;
-}
-
-function chooseJS() {
-    document.getElementById('html-button').disabled = true;
-    document.getElementById('css-button').disabled = true;
-    document.getElementById('robotic-button').disabled = true;
-}
-
-function chooseRobotic() {
-    document.getElementById('html-button').disabled = true;
-    document.getElementById('css-button').disabled = true;
-    document.getElementById('js-button').disabled = true;
-}
-
 
 function reset() {
     document.getElementById('start-screen').style = '';
@@ -346,10 +229,10 @@ function reset() {
     document.getElementById('progress-bar').innerHTML = `Frage1`;
     document.getElementById('progress-bar').style.width = `25%`;
     document.getElementById('next-button').disabled = true;
+    document.getElementById('next-arrow').disabled = true;
     resetAnswersButtons () ;
     resetAnswerFunction () ;
     currentQuestion = 0;
     countRightAnswers = 0;
     questionCategory = '';
-    
 }
